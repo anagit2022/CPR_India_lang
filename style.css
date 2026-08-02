@@ -1,0 +1,1187 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;   /* ✨ disables all scrolling */
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;    /* fallback for browsers without dvh support */
+  height: 100dvh;   /* matches the real visible viewport on Chrome mobile, where 100vh includes space behind the address bar */
+  background: #F25C3B;   /* your orange background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.skinscreen { 
+width: 100vw; 
+height: 100vh; 
+background: #FFC5B7; /* your orange background */ 
+display: none; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+position: relative; }
+.blueskinscreen { 
+width: 100vw; 
+height: 100vh; 
+background: #91C1FF; /* your orange background */ 
+display: none; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+position: relative; }
+
+.postHeading{
+    position: absolute;
+    top: 55px;
+    left: 32px;
+
+    color: #FFF;
+    font-family: "Albert Sans", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+#gender  {
+  flex-direction: column;
+  gap: 20px; /* space between image and buttons */
+}
+
+.dangerbubble img {
+  width: 80vw;
+  max-width: 380px;
+  height: auto;
+  margin-top: 10vh;
+}
+#nbbub,#notsafeintrobubble{
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  max-width: 380px;
+  margin-bottom: -20vh;
+  height: auto;
+ 
+}
+#dpromisesealrajabubble,#dpromisesealranibubble{
+  display: flex;
+  width: 80vw;
+  left: 5vw;
+  max-width: 380px;
+  margin-bottom: -5vh;
+  
+ 
+}
+#requestaedimgbubble{
+display: flex;
+  justify-content: center;
+  width: 80vw;
+  max-width: 380px;
+  margin-bottom: -40vh;
+  height: auto;
+}
+#cprbubble,#startcpr{
+display: flex;
+  justify-content: center;
+  width: 90vw;
+  max-width: 380px;
+  margin-bottom: -25vh;
+  height: auto;
+}
+
+.danger-buttons,.gender-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;          /* space between yes and no buttons */
+  width: 100%;
+  margin-top: 10vh;   /* THIS moves buttons DOWN from bubble */
+  margin-bottom: 2vh; /* THIS controls distance from bottom of screen */
+}
+.response-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 24px;          /* space between yes and no buttons */
+  width: 100%;
+  margin-top:40vh;   /* THIS moves buttons DOWN from bubble */
+  margin-bottom: -8vh; /* THIS controls distance from bottom of screen */
+}
+#nextBtn,#nextwinBtn,#nextaedBtn,#nextambBtn,#nextlatefastBtn,#nextlateslowBtn,#nextlateinactiveBtn {
+  position: absolute;
+  top: 5vh;       /* distance from top */
+  right: 5vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  cursor: pointer;
+}
+#nextvBtn {
+  position: absolute;
+  bottom: 8vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  cursor: pointer;
+}
+#nextpBtn {
+  position: absolute;
+  bottom: 20vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  cursor: pointer;
+}
+#nextprBtn,#nextaBtn,#nextc1,#nextc2,#nextc3,#nextc4{
+  position: absolute;
+  bottom: 6vh;    /* fallback for browsers without dvh support */
+  bottom: 6dvh;   /* accounts for Chrome's address bar; also brought lower per feedback (was 14vh) */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  cursor: pointer;
+}
+#dpromiseinstruc,#dpromisepress,#dpromiseseal,#dranipromisepress,#rranipromisepress,#rrajapromisepress,#bpromisepress,#branipromisepress,#wranipromisepress,#wpromisepress {
+  position: absolute;
+  bottom: 1vh;       /* distance from top */
+  right: 10vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+  justify-content: center;
+  cursor: pointer;
+}
+#girl{
+  position: absolute;
+  top: 5vh;       /* distance from top */
+  right: 5vw;     /* distance from right */
+  width: 20vw   /* responsive size */
+}
+
+.checkd{
+  width: 90%;
+  max-width: 350px;
+  height: auto;
+
+  margin-bottom: 40px;
+  margin-top: -120px;   /* move upward */
+}
+
+.bubble {
+  width: 100%;          /* responsive width */
+  max-width: 350px;    /* never grow too big */
+  height: auto;
+  margin-bottom: 40px; /* space above button */
+}
+.begin-btn {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  cursor: pointer;
+}
+.startBtn {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  cursor: pointer;
+}
+#consentBtn {
+  margin-top: -64px;  /* pulls it up, closer to the bubble above */
+}
+#practiceagainbtn,#practiceagainbtnraja,#practiceagainbtnrani{
+  position: absolute;
+    bottom: 15vh;      /* Distance from bottom */
+    right: 22vw;      /* Distance from right */
+    width: 100%;      /* Button size */
+    max-width: 200px;
+    cursor: pointer;
+    z-index: 10; 
+}
+
+/* The two live "practice again" screens (Raja & Rani) place the
+   practice-again button and the check-progress button together in
+   a centered row so they never overlap. This overrides the
+   absolute positioning above for just these two buttons. */
+.sealedActionsRow {
+  position: absolute;
+  bottom: 12vh;    /* fallback for browsers without dvh support */
+  bottom: 12dvh;   /* accounts for Chrome's address bar so buttons stay visible */
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+}
+.sealedActionsRow #practiceagainbtnraja,
+.sealedActionsRow #practiceagainbtnrani {
+  position: static;
+  bottom: auto;
+  right: auto;
+  width: 45%;
+  max-width: 160px;
+}
+/* ==============================
+   QUESTION SCREEN
+   ============================== */
+
+#preq1,
+#preq2,
+#preq3,
+#preq4,
+#preq5,
+#preq6,
+#postq1,
+#postq2,
+#postq3,
+#postq4,
+#postq5,
+#postq6{
+    background:#F25C3B;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+
+/* ==============================
+   HERO
+   ============================== */
+
+#girl{
+    position:absolute;
+    top:4vh;
+    right:6vw;
+    width:22vw;
+    max-width:90px;
+}
+
+
+/* ==============================
+   QUESTION BUBBLE
+   ============================== */
+
+.questionBubble{
+    position:absolute;
+
+    top:18vh;
+
+    width:88vw;
+    max-width:360px;
+
+    height:auto;
+}
+
+
+/* ==============================
+   ANSWER INPUT
+   ============================== */
+
+.questionInput{
+
+    position:absolute;
+
+    top:36vh;
+
+    width:76vw;
+    max-width:300px;
+
+    height:72px;
+
+    padding:14px 18px;
+
+    border:none;
+
+    border-radius:11px;
+
+    font-size:22px;
+
+    font-family:'Albert Sans', sans-serif;
+
+    color:#444;
+
+    outline:none;
+
+    text-align:center;
+
+    background:white;
+
+    box-sizing:border-box;
+
+}
+
+
+/* Placeholder */
+
+.questionInput::placeholder{
+
+    color:#666;
+
+}
+.questionInput.selected{
+
+    background:#B7E04B;
+
+    color:#F25C3B;
+
+}
+
+.questionInput.selected::placeholder{
+
+    color:#F25C3B;
+
+}
+
+
+/* ==============================
+   NOT SURE BUTTON
+   ============================== */
+
+.questionButton{
+
+    position:absolute;
+
+    top:48vh;
+
+    width:76vw;
+    max-width:300px;
+
+    height:72px;
+
+    background:white;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-family:'Albert Sans', sans-serif;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    color:black;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:0.25s;
+
+}
+.questionButton.selected{
+
+    background:#B7E04B;
+
+    color:#F25C3B;
+
+}
+
+/* ==============================
+   NEXT BUTTON
+   ============================== */
+
+.nextQuestion{
+
+    position:absolute;
+    top:70vh;
+    right:10vw;
+
+    width:28vw;
+    max-width:130px;
+
+    cursor:pointer;
+
+}
+.photoCard{
+
+    position:absolute;
+
+    top:290px;
+    left:32px;
+
+    width:320px;
+    height:210px;
+
+    background:white;
+    border-radius:20px;
+
+    box-sizing:border-box;
+    padding:18px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.photoText{
+
+    width:100%;
+
+    border:none;
+    outline:none;
+    resize:none;
+
+    font-family:"Albert Sans", sans-serif;
+    font-size:18px;
+    color:#222;
+
+    height:85px;
+}
+.cameraButton{
+
+    position:absolute;
+
+    bottom:-8px;
+    right:-8px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#FFD400;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+.photoPreviewContainer{
+
+    margin-top:12px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+.photoPreview{
+
+    width:90px;
+    height:90px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    display:none;
+}
+.photoPlaceholder{
+
+    width:90px;
+    height:90px;
+
+    border:2px dashed #cccccc;
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:14px;
+    color:#888;
+}
+.cameraBadge{
+
+    width:54px;
+    height:54px;
+
+    border:none;
+    background:transparent;
+
+    font-size:42px;
+
+    cursor:pointer;
+}
+.screen {
+  display: none;
+}
+#responseTitle,#dangerTitle,#breathTitle,#promiseTitle,#requestaedTitle,#call112title,#startcpr { 
+position: absolute; 
+top: 5vh; 
+left: 5vw; } 
+#consent { 
+  display: flex; /* show consent screen by default */ 
+}
+
+/* ========================================
+   COMPRESSION SCORE BADGE
+   Replaces hero.png on latefast + lateslow promise screens
+   ======================================== */
+
+/* ========================================
+   CHECK-FOR-BREATHING COUNTDOWN TIMER
+   Small circular badge, top-right of the checkbreathing screen,
+   counting down from 10 to 0 over the 10s the screen is shown.
+   ======================================== */
+.breath-timer {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  width: 16vw;
+  max-width: 64px;
+  min-width: 48px;
+  aspect-ratio: 1 / 1;
+  z-index: 10;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.breath-timer-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.compression-score-badge {
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+  width: 20vw;
+  max-width: 100px;
+  min-width: 72px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  /* default: pinkish for low scores — overridden by JS */
+  background: #C0667A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: 'Albert Sans', Arial, sans-serif;
+  text-align: center;
+  padding: 6px;
+  box-sizing: border-box;
+  /* smooth colour transition when JS updates it */
+  transition: background 0.4s ease;
+  z-index: 10;
+}
+
+.score-number-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  line-height: 1;
+}
+
+.score-number-row span:first-child {   /* the big number */
+  font-size: 6vw;
+  max-font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.score-denom {                          /* "/100" */
+  font-size: 2.8vw;
+  font-weight: 600;
+  line-height: 1;
+  margin-left: 1px;
+}
+
+.score-label {                          /* "Compression Score" */
+  font-size: 2.4vw;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-top: 3px;
+  opacity: 0.92;
+}
+
+/* ========================================
+   DIALPAD SCREEN STYLES
+   ======================================== */
+#dial112 {
+    font-family: 'Albert Sans', Arial, sans-serif;
+}
+.dial-header {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    color: white;
+}
+
+.dial-logo {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dial-header-text {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.ambulance-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70vw;
+    max-width: 300px;
+    position: absolute;
+    top: 18vh;
+}
+
+.ambulance-label {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.ambulance-number {
+    font-size: 64px;
+    font-weight: bold;
+    color: #FF6B4A;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ambulance-number.empty {
+    color: #ddd;
+    font-size: 24px;
+}
+
+/* Keypad Grid */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;      /* responsive spacing */
+    position: absolute;
+    top: 42vh;
+    width: 85vw;
+    max-width: 350px;
+}
+
+/* Key Buttons */
+.key {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;         /* responsive size */
+    height: 14vw;        /* responsive size */
+    max-width: 90px;     /* optional safety limit */
+    max-height: 90px;
+    font-size: 8vw;      /* responsive font */
+    color: #FF6B4A;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Label under number */
+.key-label {
+    font-size: 2.3vw;   /* responsive text */
+    margin-top: -1vw;
+    color: #999;
+}
+
+/* Call / Delete buttons row */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 3vw;       /* responsive spacing */
+    position: absolute;
+    bottom: 6vh;    /* fallback for browsers without dvh support */
+    bottom: 6dvh;   /* accounts for Chrome's address bar; also brought lower per feedback (was 16vh) */
+}
+
+
+.delete-button {
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;             /* responsive */
+    height: 14vw;            /* responsive */
+    max-width: 90px;         /* optional cap */
+    max-height: 90px;
+    font-size: 7vw;          /* responsive */
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.call-button {
+    background: #B6DB54;
+    border: none;
+    border-radius: 50%;
+    width: 14vw;             /* responsive */
+    height: 14vw;            /* responsive */
+    max-width: 90px;         /* optional safety limit */
+    font-size: 7vw;          /* responsive */
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* image inside button */
+.call-icon {
+    width: 80px;
+}
+
+/* hover + press animations */
+.call-button:hover {
+    background: #A5CA43;
+    transform: scale(1.05);
+}
+
+.call-button:active {
+    transform: scale(0.95);
+}
+
+/* disabled state */
+.call-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+
+/* ========================================
+   NAME ENTRY SCREEN
+   ======================================== */
+.nameHeading {
+  position: absolute;
+  top: 14vh;
+  width: 84vw;
+  max-width: 340px;
+  text-align: center;
+  color: #FFF;
+  font-family: "Albert Sans", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.nameSubtext {
+  position: absolute;
+  top: 26vh;
+  width: 84vw;
+  max-width: 320px;
+  text-align: center;
+  color: #FFF;
+  font-family: "Albert Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+#nameInput {
+  top: 36vh;
+}
+
+#nameNext {
+  top: 52vh;
+}
+
+/* ========================================
+   CHECK PROGRESS BUTTON
+   (sits next to the "Practice Again" button)
+   ======================================== */
+.checkProgressBtn {
+  position: static;
+  width: 45%;
+  max-width: 160px;
+  padding: 14px 10px;
+  background: #FFFFFF;
+  color: #F25C3B;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease;
+  box-sizing: border-box;
+}
+
+.checkProgressBtn:active {
+  transform: scale(0.96);
+}
+
+/* ========================================
+   PROGRESS SCREEN
+   ======================================== */
+#progressScreen {
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 999;      /* sit above anything left over from a practice session */
+  background: #F25C3B;  /* explicit, opaque — nothing behind should ever show through */
+}
+
+.progressHeading {
+  position: absolute;
+  top: 6vh;
+  left: 8vw;
+  width: 84vw;
+  color: #FFF;
+  font-family: "Albert Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.progressLatestCard {
+  position: absolute;
+  top: 20vh;
+  left: 8vw;
+  width: 84vw;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.progressLatestCol {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+.progressLatestLabel {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.progressLatestValue {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #038660;   /* default; overridden inline by JS to match the latest attempt's pass/fail color */
+}
+
+.progressLatestValue .progressLatestDenom {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.progressLatestBpmValue {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #038660;   /* default; overridden inline by JS — green when within the 100-120 target range, red otherwise */
+}
+
+/* Recent-7 / All toggle, sits between the score card and the chart */
+.progressChartModeToggle {
+  position: absolute;
+  top: 39vh;
+  left: 8vw;
+  width: 84vw;
+  max-width: 340px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.progressChartModeBtn {
+  flex: 1;
+  padding: 7px 0;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.progressChartModeBtn.active {
+  background: #ffffff;
+  color: #F25C3B;
+}
+
+.progressChartWrap {
+  position: absolute;
+  top: 45vh;
+  left: 8vw;
+  width: 84vw;
+  max-width: 340px;
+  /* top+bottom (rather than a fixed height) so the chart always stops
+     short of the footer's Back/Clear buttons, however tall or short the
+     screen is. max-height caps it on very tall screens. */
+  bottom: 15vh;    /* fallback for browsers without dvh support */
+  bottom: 15dvh;   /* leaves guaranteed clearance above the footer */
+  max-height: 320px;
+}
+
+.progressChartYLabel {
+  position: absolute;
+  left: -2px;
+  top: 0;
+  bottom: 20px;
+  width: 16px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fixed (non-scrolling) column of 0/10/20…100 numbers next to the
+   y-axis title. Shares the exact same top/bottom box as the scroll
+   area and track, so a number's "bottom" offset lines up perfectly
+   with its matching gridline drawn inside the track. */
+.progressChartAxisNums {
+  position: absolute;
+  left: 16px;
+  width: 26px;
+  top: 0;
+  bottom: 20px;
+}
+
+.chartAxisNumber {
+  position: absolute;
+  right: 2px;
+  transform: translateY(50%);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.progressChartXLabel {
+  position: absolute;
+  left: 46px;
+  right: 0;
+  bottom: 0;
+  height: 18px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 12px;
+}
+
+.progressChartScroll {
+  position: absolute;
+  left: 46px;
+  right: 0;
+  top: 0;
+  bottom: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;      /* Firefox */
+}
+.progressChartScroll::-webkit-scrollbar {
+  display: none;              /* Chrome / Safari */
+}
+
+.progressChartTrack {
+  position: relative;
+  touch-action: pan-x;
+}
+
+.chartBaseline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.chartAxisVertical {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Faint horizontal gridline at every 10% mark, matching a number
+   in .progressChartAxisNums at the same bottom offset. */
+.chartGridLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Straight segment connecting one attempt's point to the next,
+   rotated to the exact angle between them. transform-origin stays
+   at the left edge so the segment pivots from its start point. */
+.chartLineSeg {
+  position: absolute;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  transform-origin: left center;
+  border-radius: 2px;
+}
+
+.chartPoint {
+  position: absolute;
+  transform: translate(-50%, 50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.chartAttemptLabel {
+  position: absolute;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 11px;
+}
+
+/* Left/right nudge buttons — shown only when there are enough
+   attempts that the chart actually overflows and needs scrolling. */
+.progressChartArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #F25C3B;
+  font-size: 20px;
+  font-weight: 700;
+  display: none;   /* toggled to flex by JS when scrollable */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+.progressChartArrowLeft { left: -6px; }
+.progressChartArrowRight { right: -6px; }
+
+/* Tooltip that appears when a score circle is tapped, showing the
+   exact date/time that attempt was recorded. */
+.progressTooltip {
+  position: absolute;
+  display: none;
+  background: #222;
+  color: #fff;
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  z-index: 6;
+}
+.progressTooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #222;
+}
+
+.progressNoData {
+  position: absolute;
+  top: 42vh;
+  left: 8vw;
+  width: 84vw;
+  max-width: 340px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 15px;
+}
+
+.progressFooter {
+  position: absolute;
+  bottom: 4vh;    /* fallback for browsers without dvh support */
+  bottom: 4dvh;   /* accounts for Chrome's address bar so buttons stay visible */
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressBackBtn {
+  background: #B6DB54;
+  color: #7C9C3D;
+  padding: 14px 46px;
+  border-radius: 30px;
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.progressClearBtn {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
+}
+
+#p5Screen {
+      width: 100vw;
+      height: 100vh;    /* fallback for browsers without dvh support */
+      height: 100dvh;   /* matches the real visible viewport on Chrome mobile */
+      display: none;     /* hidden initially */
+      position: relative;
+      background: #FFC5B7;
+    }
