@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css?v=9">
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <audio id="introAudio" src="ElevenLabs_2025-06-15T03_03_50_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="checkdAudio" src="ElevenLabs_2025-06-15T03_04_45_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="dnotsafeAudio" src="ElevenLabs_2025-06-15T05_45_53_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="cantdsafe" src="ElevenLabs_2025-11-04T08_34_33_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="promisedaud" src="ElevenLabs_2025-11-04T07_34_48_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="promisejingle" src="mixkit-happy-bells-notification-937.wav"></audio>
+    <audio id="test" src="Promise sealed ghar .m4a"></audio>
+    <audio id="checkrAudio" src="check_for_response.mp3"></audio>
+    <audio id="did_spongy_respond" src="did_spongy_respond.mp3"></audio>
+    <audio id="check_if_breathing" src="check_if_breathing.mp3"></audio>
+    <audio id="could_you_see_breathing" src="could_you_see_breathing.mp3"></audio> 
+    <audio id="breathingtype" src="ElevenLabs_2025-06-18T03_04_36_Alice_pre_sp100_s50_sb75_v3.mp3"></audio> 
+    <audio id="gaspAudio" src="gasping.m4a"></audio>
+    <audio id="normalbreathAudio" src="normal_breath_sounds (1).mp3"></audio>
+    <audio id="requestaedaud" src="ElevenLabs_2025-11-04T11_58_20_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
+    <audio id="call112" src="ElevenLabs_2026-07-11T14_37_05_Alice - Clear, Engaging Educator_pre_sp100_s50_sb75_v3.mp3"></audio>
+
+    <div class="screen" id="consent">
+      <img src="consent (1).png" class="bubble"  />
+      <img src="agree consent.png" class="beginbutton" id="consentBtn" />
+    </div>
+
+<div class="screen" id="nameEntry">
+    <img src="hero.png" id="girl">
+    <div class="nameHeading">Before we begin,<br>what's your name?</div>
+    <div class="nameSubtext">We'll use it to track your practice progress</div>
+    <input
+        id="nameInput"
+        class="questionInput"
+        placeholder="Type your name here">
+    <img
+        src="nextq.png"
+        id="nameNext"
+        class="nextQuestion">
+</div>
+
+<div class="screen" id="preq1">
+    <img src="hero.png" id="girl">
+    <img src="preq1bubble.png"
+         class="questionBubble">
+    <input
+        id="preq1input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq1NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq1Next"
+        class="nextQuestion">
+ </div> 
+
+  <div class="screen" id="preq2">
+    <img src="hero.png" id="girl">
+    <img src="preq2bubble.png"
+         class="questionBubble">
+    <input
+        id="preq2input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq2NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq2Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="preq3">
+    <img src="hero.png" id="girl">
+    <img src="preq3bubble.png"
+         class="questionBubble">
+    <input
+        id="preq3input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq3NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq3Next"
+        class="nextQuestion">
+</div>
+
+       <div class="screen" id="preq4">
+    <img src="hero.png" id="girl">
+    <img src="preq4bubble.png"
+         class="questionBubble">
+    <input
+        id="preq4input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq4NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq4Next"
+        class="nextQuestion">
+</div>
+
+       <div class="screen" id="preq5">
+    <img src="hero.png" id="girl">
+    <img src="preq5bubble.png"
+         class="questionBubble">
+    <input
+        id="preq5input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq5NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq5Next"
+        class="nextQuestion">
+</div>
+
+       <div class="screen" id="preq6">
+    <img src="hero.png" id="girl">
+    <img src="preq6bubble.png"
+         class="questionBubble">
+    <input
+        id="preq6input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+    id="preq6NotSure"
+    class="questionButton">
+    I am not sure
+</div>
+    <img
+        src="nextq.png"
+        id="preq6Next"
+        class="nextQuestion">
+</div>
+    
+<div class="screen" id="postq1">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq1bubble.png"
+         class="questionBubble">
+    <input
+        id="postq1input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq1NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq1Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="postq2">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq2bubble.png"
+         class="questionBubble">
+    <input
+        id="postq2input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq2NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq2Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="postq3">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq3bubble.png"
+         class="questionBubble">
+    <input
+        id="postq3input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq3NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq3Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="postq4">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq4bubble.png"
+         class="questionBubble">
+    <input
+        id="postq4input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq4NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq4Next"
+        class="nextQuestion">
+</div>
+    <div class="screen" id="postq5">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq5bubble.png"
+         class="questionBubble">
+    <input
+        id="postq5input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq5NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq5Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="postq6">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img src="postq6bubble.png"
+         class="questionBubble">
+    <input
+        id="postq6input"
+        class="questionInput"
+        placeholder="Type your answer here">
+    <div
+        id="postq6NotSure"
+        class="questionButton">
+        I am not sure
+    </div>
+    <img
+        src="nextq.png"
+        id="postq6Next"
+        class="nextQuestion">
+</div>
+
+    <div class="screen" id="postq7">
+    <div class="postHeading">
+        Let's Reflect on<br>
+        your mission
+    </div>
+    <img src="hero.png" id="girl">
+    <img
+        src="postq7bubble.png"
+        class="questionBubble">
+    <div class="photoCard">
+    <textarea
+        id="postq7input"
+        class="photoText"
+        placeholder="What is your promise?"></textarea>
+    <div class="photoPreviewContainer">
+        <img
+            id="postq7Preview"
+            class="photoPreview"
+            style="display:none;">
+        <div
+            id="photoPlaceholder"
+            class="photoPlaceholder">
+            No Photo
+        </div>
+        <button
+            id="postq7CameraBtn"
+            class="cameraBadge">
+            📷
+        </button>
+    </div>
+    <input
+        type="file"
+        id="postq7CameraInput"
+        accept="image/*"
+        capture="environment"
+        style="display:none;">
+</div>
+    <img
+        src="nextq.png"
+        id="postq7Next"
+        class="nextQuestion">
+</div>
+  
+    <div class="screen" id="begin1">
+      <img src="beginbub.png" class="bubble"  />
+      <img src="beginbtn.png" class="beginbutton" id="beginBtn" />
+    </div>
+
+    <div class="screen" id="gender">
+      <img src="selectrajarani.png"  />
+      <div class="gender-buttons">
+        <img src="rajabutton.png" id="rajaBtn" />
+        <img src="ranibutton.png" id="raniBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="intro">
+      <img src="intro (2).png" class="introbubble" id="beginBubBtn" />
+      <div class="start-button">
+        <img src="start (5).png" id="startBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="checkdanger">
+      <div class="checkdtitle">
+        <img src="checkfordanger.png" id="dangerTitle" />
+      </div>
+      <div class="dangerbubble">
+        <img src="dangerbub-1.png"  />
+      </div>
+      <div class="danger-buttons">
+        <img src="yesbutton.png" id="dyesBtn" />
+        <img src="nobutton.png" id="dnoBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="dnotsafeq">
+      <img src="checkfordanger.png" id="dangerTitle" />
+      <img src="dnotsafebub.png" id="notsafeintrobubble" />
+      <div class="response-buttons">
+        <img src="nowsafe.png" id="nowsafeBtn" />
+        <img src="cannotsafe.png" id="cantsafeBtn" />
+      </div>
+    </div> 
+
+    <div class="screen" id="dcantsafe">
+      <img src="checkfordanger.png" id="dangerTitle" />
+      <img src="can'tsafebub.png" id="notsafeintrobubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextpBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisedraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="dpromisesealbub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisedrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="dpromisesealbub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="dpromisepress" />
+      </div>
+    </div>     
+
+    <div class="screen" id="promisesealedraja">
+      <img src="promisesealedrajatitle.png" id="promiseTitle" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promiseseaoedhands.png" id="dpromiseseal" />
+      </div>
+      <div class="sealedActionsRow">
+        <img src="practice again button.png" id="practiceagainbtnraja" />
+        <div class="checkProgressBtn" id="checkProgressBtnRaja">📊 My Progress</div>
+      </div>
+    </div> 
+
+    <div class="screen" id="promisedrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="dranipromisesealbub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisedranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="dranipromisesealbub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="dranipromisepress" />
+      </div>
+    </div>       
+
+    <div class="screen" id="promisesealedrani">
+      <img src="promisesealedranititle.png" id="promiseTitle" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promiseseaoedhands.png" id="dpromiseseal" />
+      </div>
+      <div class="sealedActionsRow">
+        <img src="practice again button.png" id="practiceagainbtnrani" />
+        <div class="checkProgressBtn" id="checkProgressBtnRani">📊 My Progress</div>
+      </div>
+    </div> 
+
+    <div class="skinscreen" id="checkresponse">
+      <img src="cresponse.png" id="responseTitle" />
+      <img src="faceonly.png" class="face" />
+    </div>
+
+    <div class="screen" id="checkresponseq">
+      <img src="cresponse.png" id="responseTitle" />
+      <img src="responsequestionbub.png" class="introbubble" />
+      <div class="response-buttons">
+        <img src="yesbutton.png" id="ryesBtn" />
+        <img src="nobutton.png" id="rnoBtn" />
+      </div>
+    </div>
+
+    <div class="skinscreen" id="awake">
+      <img src="awake.gif" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextBtn" />
+      </div>      
+    </div>
+
+    <div class="screen" id="promiserrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="promiserranibub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiserranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="promiserranibub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="rranipromisepress" />
+      </div>
+    </div>       
+
+    <div class="screen" id="promiserraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="promiseresponsebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiserrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="promiseresponsebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="rrajapromisepress" />
+      </div>
+    </div>       
+
+    <div class="screen" id="responded">
+      <img src="cresponse.png" id="responseTitle" />
+      <img src="respondedbub.png" id="notsafeintrobubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextprBtn" />
+      </div>
+    </div>
+
+    <div class="skinscreen" id="checkbreathing">
+      <img src="checkbtitle.png" id="breathTitle" />
+      <img src="faceonly.png" class="face" id="breathFaceImg" />
+      <div class="breath-timer" id="breathTimer">
+        <svg class="breath-timer-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="42" y="2" width="16" height="12" rx="4" fill="#F25C3B" />
+          <circle cx="50" cy="54" r="40" fill="#FFFFFF" stroke="#F25C3B" stroke-width="5" />
+          <g stroke="#F25C3B" stroke-width="2.5" stroke-linecap="round">
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(0 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(30 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(60 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(90 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(120 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(150 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(180 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(210 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(240 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(270 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(300 50 54)" />
+            <line x1="50" y1="16" x2="50" y2="24" transform="rotate(330 50 54)" />
+          </g>
+          <text id="breathTimerNumber" x="50" y="62" text-anchor="middle" font-family="Albert Sans, Arial, sans-serif" font-weight="700" font-size="26" fill="#F25C3B">10</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="screen" id="checkbreathingq">
+      <img src="checkbtitle.png" id="breathTitle" />
+      <img src="checkbq.png" class="introbubble" />
+      <div class="response-buttons">
+        <img src="yesbutton.png" id="byesBtn" />
+        <img src="nobutton.png" id="bnoBtn" />
+      </div>
+    </div> 
+    
+    <div class="screen" id="checkbreathingtypeq">
+      <img src="checkbtitle.png" id="breathTitle" />
+      <img src="btypeqbub.png" class="introbubble" />
+      <div class="response-buttons">
+        <img src="normalbtn.png" id="normalBtn" />
+        <img src="abnormalbtn.png" id="abnormalBtn" />
+      </div>
+    </div> 
+    
+    <div class="screen" id="normalbreathing">
+      <img src="checkbtitle.png" id="breathTitle" />
+      <img src="normalbreath.png" id="nbbub" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextvBtn" />
+      </div>
+    </div> 
+
+    <div class="screen" id="promisebraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="NBrajapromisebub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisebrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="NBrajapromisebub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>       
+
+    <div class="screen" id="promisebrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="NBranipromisebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisebranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="NBranipromisebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>       
+
+    <div class="screen" id="requestaed">
+      <img src="requestaedtitle (1).png" id="requestaedTitle" />
+      <img src="Group 144.png" id="requestaedimgbubble" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextaBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="dial112blank">
+      <img src="call112title1.png" id="call112title" />
+    </div>
+
+    <div class="screen" id="dial112">
+      <img src="call112title1.png" id="call112title" />
+      <div class="ambulance-card">
+        <div class="ambulance-label"> </div>
+        <div class="ambulance-number empty" id="dialDisplay">Dial a number</div>
+      </div>
+      <div class="keypad">
+        <button class="key" id="dialBtn1">1</button> 
+        <button class="key" id="dialBtn2">2<span class="key-label">ABC</span></button>
+        <button class="key" id="dialBtn3">3<span class="key-label">DEF</span></button>
+        <button class="key" id="dialBtn4">4<span class="key-label">GHI</span></button>
+        <button class="key" id="dialBtn5">5<span class="key-label">JKL</span></button>
+        <button class="key" id="dialBtn6">6<span class="key-label">MNO</span></button>
+        <button class="key" id="dialBtn7">7<span class="key-label">PQRS</span></button>
+        <button class="key" id="dialBtn8">8<span class="key-label">TUV</span></button>
+        <button class="key" id="dialBtn9">9<span class="key-label">WXYZ</span></button>
+        <button class="key" id="dialBtnStar">*</button>
+        <button class="key" id="dialBtn0">0</button>
+        <button class="key" id="dialBtnHash">#</button>
+      </div>
+      <div class="button-row">
+        <button class="delete-button" id="deleteBtnDial">⌫</button> 
+        <button class="call-button" id="callBtn" disabled> <img src="image.png" class="call-icon" /></button>
+      </div>
+    </div>
+
+    <div class="screen" id="addspeaker">
+      <img src="call112title1.png" id="call112title" />
+      <img src="speakeraddbub (2).png" id="speakeraddbubble" />
+      <div class="button-row">
+        <img src="disconnectbtn.png" id="disconnectBtn"  />
+        <img src="speakerbtn.png" id="speakerbtn"/>
+      </div>
+    </div>
+
+    <div class="screen" id="addedspeaker">
+      <img src="call112title1.png" id="call112title" />
+      <img src="speakeraddbub (2).png" id="speakeraddbubble" />
+      <div class="button-row">
+        <img src="disconnectbtn.png" id="disconnectBtn"  />
+        <img src="speakeronbtn.png" id="speakeronbtn"/>
+      </div>
+    </div>
+
+    <div class="screen" id="victiminca">
+      <img src="call112title1.png" id="call112title" />
+      <img src="victiminca.png" id="speakeraddbubble" />
+      <div class="button-row">
+        <img src="disconnectbtn.png" id="disconnectBtn"  />
+        <img src="speakeronbtn.png" id="speakeronbtn"/>
+      </div>
+    </div>
+
+    <div class="screen" id="cpr1">
+      <img src="begincprby.png" id="call112title" />
+      <img src="CPR1.gif" id="cprbubble" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextc1" />
+      </div>
+    </div>
+
+    <div class="screen" id="cpr2">
+      <img src="begincprby.png" id="call112title" />
+      <img src="interlock (4).png" id="cprbubble" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextc2" />
+      </div>
+    </div>
+
+    <div class="screen" id="cpr3">
+      <img src="begincprby.png" id="call112title" />
+      <img src="straight elbows (4).png" id="cprbubble" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextc3" />
+      </div>
+    </div>
+
+    <div class="screen" id="cpr4">
+      <img src="begincprby.png" id="call112title" />
+      <img src="cpr4.gif" id="cprbubble" />
+      <div class="response-buttons">
+        <img src="nextvertical.png" id="nextc4" />
+      </div>
+    </div>
+
+    <div class="screen" id="cpr5">
+      <img src="Start cpr (2).png" id="startcpr" /> 
+    </div>
+
+    <div class="screen" id="p5Screen">   
+    </div>
+
+    <div class="skinscreen" id="win">
+      <img src="awake.gif" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextwinBtn" />
+      </div>      
+    </div>
+
+    <div class="screen" id="promisewraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+     <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisewrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="winRajaScoreBadge">
+        <div class="score-number-row">
+          <span id="winRajaScoreValue">0</span><span class="score-denom" id="winRajaScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="wpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promisewrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+          <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promisewranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="winRaniScoreBadge">
+        <div class="score-number-row">
+          <span id="winRaniScoreValue">0</span><span class="score-denom" id="winRaniScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="wranipromisepress" />
+      </div>
+    </div>       
+
+    <div class="skinscreen" id="amb">
+      <img src="amb.gif" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextambBtn" />
+      </div>      
+    </div>
+
+    <div class="screen" id="promiseambraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+           <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiseambrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="ambRajaScoreBadge">
+        <div class="score-number-row">
+          <span id="ambRajaScoreValue">0</span><span class="score-denom" id="ambRajaScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promiseambrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+           <img src="hero.png" id="girl" />
+
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiseambranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="ambRaniScoreBadge">
+        <div class="score-number-row">
+          <span id="ambRaniScoreValue">0</span><span class="score-denom" id="ambRaniScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>       
+
+    <div class="skinscreen" id="aed">
+      <img src="aed.gif" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextaedBtn" />
+      </div>      
+    </div>
+
+    <div class="screen" id="promiseaedraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+        <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiseaedrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="winpromiserajabub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="aedRajaScoreBadge">
+        <div class="score-number-row">
+          <span id="aedRajaScoreValue">0</span><span class="score-denom" id="aedRajaScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promiseaedrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiseaedranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="winpromiseranibub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="aedRaniScoreBadge">
+        <div class="score-number-row">
+          <span id="aedRaniScoreValue">0</span><span class="score-denom" id="aedRaniScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>       
+
+    <div class="blueskinscreen" id="latefast">
+      <img src="end (3).png" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextlatefastBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselatefastraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="latefastpromisebub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="lateScoreBadge">
+        <div class="score-number-row">
+          <span id="lateScoreValue">0</span><span class="score-denom" id="lateScoreDenom">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselatefastrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="latefastpromisebub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="lateScoreBadge2">
+        <div class="score-number-row">
+          <span id="lateScoreValue2">0</span><span class="score-denom" id="lateScoreDenom2">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promiselatefastrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="latefastpromisebub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="lateScoreBadge3">
+        <div class="score-number-row">
+          <span id="lateScoreValue3">0</span><span class="score-denom" id="lateScoreDenom3">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselatefastranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="latefastpromisebub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="lateScoreBadge4">
+        <div class="score-number-row">
+          <span id="lateScoreValue4">0</span><span class="score-denom" id="lateScoreDenom4">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>    
+
+    <div class="blueskinscreen" id="lateslow">
+      <img src="end (3).png" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextlateslowBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateslowraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="lateslowpromisebub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="lateScoreBadge5">
+        <div class="score-number-row">
+          <span id="lateScoreValue5">0</span><span class="score-denom" id="lateScoreDenom5">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateslowrajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="lateslowpromisebub.png" id="dpromisesealrajabubble" />
+      <div class="compression-score-badge" id="lateScoreBadge6">
+        <div class="score-number-row">
+          <span id="lateScoreValue6">0</span><span class="score-denom" id="lateScoreDenom6">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promiselateslowrani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="lateslowpromisebub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="lateScoreBadge7">
+        <div class="score-number-row">
+          <span id="lateScoreValue7">0</span><span class="score-denom" id="lateScoreDenom7">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateslowranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="lateslowpromisebub.png" id="dpromisesealranibubble" />
+      <div class="compression-score-badge" id="lateScoreBadge8">
+        <div class="score-number-row">
+          <span id="lateScoreValue8">0</span><span class="score-denom" id="lateScoreDenom8">/0</span>
+        </div>
+        <div class="score-label">Compression<br>Score</div>
+      </div>
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>    
+
+    <div class="blueskinscreen" id="lateinactive">
+      <img src="end (3).png" class="face" />
+      <div class="next-button">
+        <img src="next.png" id="nextlateinactiveBtn" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateinactiveraja">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="inactivepromisebub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateinactiverajapress">
+      <img src="awscprraja.png" id="promiseTitle" />
+      <img src="inactivepromisebub.png" id="dpromisesealrajabubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="bpromisepress" />
+      </div>
+    </div>      
+
+    <div class="screen" id="promiselateinactiverani">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="inactivepromisebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepress.gif" id="dpromiseinstruc" />
+      </div>
+    </div>
+
+    <div class="screen" id="promiselateinactiveranipress">
+      <img src="awscprrani.png" id="promiseTitle" />
+      <img src="inactivepromisebub.png" id="dpromisesealranibubble" />
+      <img src="hero.png" id="girl" />
+      <div class="response-buttons">
+        <img src="promisepresshand.png" id="branipromisepress" />
+      </div>
+    </div>    
+
+    <div class="screen" id="progressScreen">
+      <div class="progressHeading">Compression<br>performance</div>
+
+      <div class="progressLatestCard">
+        <div class="progressLatestCol">
+          <div class="progressLatestLabel">Good compression score</div>
+          <div class="progressLatestValue" id="progressLatestValue">
+            <span id="progressLatestScore">0</span><span class="progressLatestDenom" id="progressLatestDenom">/0</span>
+          </div>
+        </div>
+        <div class="progressLatestCol">
+          <div class="progressLatestLabel">Average compression rhythm</div>
+          <div class="progressLatestBpmValue" id="progressLatestBpmValue"><span id="progressLatestBpm">0</span> BPM</div>
+        </div>
+      </div>
+
+      <div class="progressChartModeToggle" id="progressChartModeToggle">
+        <div class="progressChartModeBtn active" id="progressChartModeRecent" data-mode="recent">Recent 7</div>
+        <div class="progressChartModeBtn" id="progressChartModeAll" data-mode="all">All</div>
+      </div>
+
+      <div class="progressChartWrap" id="progressChartWrap">
+        <div class="progressChartYLabel">Compression Score</div>
+        <div class="progressChartAxisNums" id="progressChartAxisNums"></div>
+        <div class="progressChartScroll" id="progressChartScroll">
+          <div class="progressChartTrack" id="progressChartTrack"></div>
+        </div>
+        <div class="progressChartXLabel">Attempt</div>
+        <div class="progressChartArrow progressChartArrowLeft" id="progressChartArrowLeft">&#8249;</div>
+        <div class="progressChartArrow progressChartArrowRight" id="progressChartArrowRight">&#8250;</div>
+        <div class="progressTooltip" id="progressTooltip"></div>
+      </div>
+
+      <div class="progressNoData" id="progressNoData" style="display:none;">
+        No practice sessions yet — try a mission!
+      </div>
+
+      <div class="progressFooter">
+        <div class="progressBackBtn" id="progressBackBtn">Back</div>
+        <div class="progressClearBtn" id="progressClearBtn">Clear my progress</div>
+      </div>
+    </div>
+
+    <main>
+    </main>
+    <script src="sketch.js?v=9"></script>
+  </body>
+</html>
