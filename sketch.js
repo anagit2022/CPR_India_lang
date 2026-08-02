@@ -1,8 +1,84 @@
+// ========================================
+// LOCALIZATION
+// currentLang is read once at script load, from whatever the person
+// picked last time on the #langPicker screen (defaults to English).
+// Every image and audio file is loaded through the helpers below, which
+// look for a "_<lang>" suffixed version of the same filename and fall
+// back to the plain English file if it doesn't exist — so a language can
+// be added just by dropping in translated asset files, no code changes.
+// ========================================
+let currentLang = "en";
+try {
+  currentLang = localStorage.getItem("cprLang") || "en";
+} catch (e) { /* localStorage unavailable, default to English */ }
+
+// Turns "filename.ext" into "filename_<lang>.ext" (unchanged for English).
+function localizedPath(filename) {
+  if (currentLang === "en") return filename;
+  const dot = filename.lastIndexOf(".");
+  if (dot === -1) return filename;
+  return filename.slice(0, dot) + "_" + currentLang + filename.slice(dot);
+}
+
+// Loads a sound through the current language's asset naming convention.
+// If the translated file is missing, logs a warning but doesn't crash —
+// that specific clip just won't play until the asset is supplied.
+function loadLocalizedSound(filename) {
+  return loadSound(localizedPath(filename), null, function () {
+    console.warn("Missing localized audio (falling back to silence):", localizedPath(filename));
+  });
+}
+
+// Rewrites every <img src> and <audio src> on the page to its "_<lang>"
+// version. Falls back to the original English file automatically if a
+// translated version 404s, so a partially-translated asset pack never
+// breaks the UI or leaves a scene silent.
+function localizeStaticAssets() {
+  if (currentLang === "en") return;
+  document.querySelectorAll("img[src], audio[src]").forEach(function (el) {
+    if (el.dataset.i18nApplied) return;
+    el.dataset.i18nApplied = "1";
+    const orig = el.getAttribute("src");
+    const localized = localizedPath(orig);
+    if (localized === orig) return;
+    el.onerror = function () {
+      el.onerror = null;
+      el.src = orig; // translated asset missing — fall back to English
+      if (el.tagName === "AUDIO") el.load();
+    };
+    el.src = localized;
+    if (el.tagName === "AUDIO") el.load(); // audio elements need an explicit reload after changing src
+  });
+}
+
 let userName = "";        // learner's name, used to track their progress
 let scoreLoggedForAttempt = false;  // guards against logging the same attempt multiple times
 const CHART_WINDOW_SIZE = 7;        // number of attempts shown in "recent" (zoomed-in) mode
 let chartMode = "recent";           // "recent" | "all" — toggled by the chart's view buttons
 let genderState = null;   // 1 = Raja, 0 = Rani
+
+// ========================================
+// BREATHING SCENARIO CYCLING
+// Instead of picking a random breathing scenario each session (which can
+// repeat the same one several times in a row, or skip one for a while by
+// chance), this guarantees balanced coverage: no breathing -> abnormal
+// breathing -> normal breathing -> repeats, persisted across sessions
+// (and page reloads) via localStorage so the sequence keeps advancing
+// correctly for the same learner over time.
+// ========================================
+const BREATH_SCENARIOS = ["none", "abnormal", "normal"];
+function nextBreathScenario() {
+  let idx = 0;
+  try {
+    idx = parseInt(localStorage.getItem("cprBreathScenarioIndex") || "0", 10);
+    if (isNaN(idx) || idx < 0) idx = 0;
+  } catch (e) { /* localStorage unavailable, just start from "none" each time */ }
+  const scenario = BREATH_SCENARIOS[idx % BREATH_SCENARIOS.length];
+  try {
+    localStorage.setItem("cprBreathScenarioIndex", String(idx + 1));
+  } catch (e) { /* ignore */ }
+  return scenario;
+}
 // pre question answers
 let preAnswers = {
     q1: "",
@@ -27,7 +103,7 @@ let photoBase64 = "";
 let mic;
 let listeningForResponse = false;
 let responseTimeout = null;
-let breath_no ;
+let breathScenario = "none"; // "none" | "abnormal" | "normal" — set by nextBreathScenario()
 let breathTimerInterval = null; // holds the setInterval id for the checkbreathing countdown badge
 let dialedNumber = ''; // <-- Dial Pad Variable
 let t1, t2, t3, t4, t5,t6;
@@ -82,44 +158,44 @@ function preload(){
   meterimg = loadImage("bpm meter86.png");
   arrowimg = loadImage("arrow2.png");
   //sound
-  respondedaud = loadSound("ElevenLabs_2025-06-I am .mp3");
-  respondednextaud = loadSound("ElevenLabs_2025-06-16T10_02_51_Alice_pre_sp100_s50_sb75_v3.mp3");
-  promisertaud = loadSound("ElevenLabs_2025-11-04T11_56_30_Alice_pre_sp100_s50_sb75_v3.mp3");
+  respondedaud = loadLocalizedSound("ElevenLabs_2025-06-I am .mp3");
+  respondednextaud = loadLocalizedSound("ElevenLabs_2025-06-16T10_02_51_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promisertaud = loadLocalizedSound("ElevenLabs_2025-11-04T11_56_30_Alice_pre_sp100_s50_sb75_v3.mp3");
   //
   gasp_aud = loadSound("gasping.m4a");
   normal_breath_aud = loadSound("breathing-6811.mp3");
-  couldobserveb = loadSound("could_you_see_breathing.mp3");
-  ifbreathnormalaud = loadSound("ElevenLabs_2025-06-17T23_01_53_Alice_pre_sp100_s50_sb75_v3.mp3");
-  promisebtaud = loadSound("ElevenLabs_2025-11-04T11_55_06_Alice_pre_sp100_s50_sb75_v3.mp3");
+  couldobserveb = loadLocalizedSound("could_you_see_breathing.mp3");
+  ifbreathnormalaud = loadLocalizedSound("ElevenLabs_2025-06-17T23_01_53_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promisebtaud = loadLocalizedSound("ElevenLabs_2025-11-04T11_55_06_Alice_pre_sp100_s50_sb75_v3.mp3");
   
   
   ring = loadSound("mixkit-office-telephone-ring-1350.wav");
   dial = loadSound("9aud.mp3");
-  addspeakeraud = loadSound("ElevenLabs_2025-11-04T12_00_41_Alice_pre_sp100_s50_sb75_v3.mp3");
-  victimaud = loadSound("ElevenLabs_2025-11-04T17_32_18_Alice_pre_sp100_s50_sb75_v3.mp3");
-  okokaud = loadSound("ok_ok.mp3");   // filler audio: dispatcher says "ok ok" — rename if your file differs
-  hmhmaud = loadSound("hm_hm.mp3");   // filler audio: dispatcher says "hm hm" — rename if your file differs
+  addspeakeraud = loadLocalizedSound("ElevenLabs_2025-11-04T12_00_41_Alice_pre_sp100_s50_sb75_v3.mp3");
+  victimaud = loadLocalizedSound("ElevenLabs_2025-11-04T17_32_18_Alice_pre_sp100_s50_sb75_v3.mp3");
+  okokaud = loadLocalizedSound("ok_ok.mp3");   // filler audio: dispatcher says "ok ok" — rename if your file differs
+  hmhmaud = loadLocalizedSound("hm_hm.mp3");   // filler audio: dispatcher says "hm hm" — rename if your file differs
 
-  cprC1aud = loadSound("ElevenLabs_2025-06-28T05_17_33_Alice_pre_sp100_s50_sb75_v3.mp3");
-  cprC2aud = loadSound("ElevenLabs_2025-06-25T03_15_33_Alice_pre_sp100_s50_sb75_v3.mp3");
-  cprC3aud = loadSound("ElevenLabs_2025-06-16T00_04_57_Alice_pre_sp100_s50_sb75_v3.mp3");
-  cprC4aud = loadSound("ElevenLabs_2025-06-25T03_12_37_Alice_pre_sp100_s50_sb75_v3.mp3");
-  cprBeginaud = loadSound("ElevenLabs_2025-11-05T03_21_18_Alice_pre_sp100_s50_sb75_v3.mp3");
+  cprC1aud = loadLocalizedSound("ElevenLabs_2025-06-28T05_17_33_Alice_pre_sp100_s50_sb75_v3.mp3");
+  cprC2aud = loadLocalizedSound("ElevenLabs_2025-06-25T03_15_33_Alice_pre_sp100_s50_sb75_v3.mp3");
+  cprC3aud = loadLocalizedSound("ElevenLabs_2025-06-16T00_04_57_Alice_pre_sp100_s50_sb75_v3.mp3");
+  cprC4aud = loadLocalizedSound("ElevenLabs_2025-06-25T03_12_37_Alice_pre_sp100_s50_sb75_v3.mp3");
+  cprBeginaud = loadLocalizedSound("ElevenLabs_2025-11-05T03_21_18_Alice_pre_sp100_s50_sb75_v3.mp3");
 
   press_music = loadSound("mixkit-message-pop-alert-2354.mp3");
   winaud = loadSound("mixkit-fairy-arcade-sparkle-866.wav");
-  aedaud = loadSound("ElevenLabs_2025-06-16T12_58_21_Alice_pre_sp100_s50_sb75_v3.mp3");
+  aedaud = loadLocalizedSound("ElevenLabs_2025-06-16T12_58_21_Alice_pre_sp100_s50_sb75_v3.mp3");
   ambaud = loadSound("ambulance-312230.mp3");
   lateaud = loadSound("negative_beeps-6008.mp3");
-  promisewtaud = loadSound("ElevenLabs_2025-11-05T06_53_28_Alice_pre_sp100_s50_sb75_v3.mp3");
-  promiseiltaud = loadSound("ElevenLabs_2025-12-10T02_39_25_Alice_pre_sp100_s50_sb75_v3.mp3");
-  promisefltaud = loadSound("ElevenLabs_2025-12-10T02_40_37_Alice_pre_sp100_s50_sb75_v3.mp3");
-  promisesltaud = loadSound("ElevenLabs_2025-12-10T02_41_38_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promisewtaud = loadLocalizedSound("ElevenLabs_2025-11-05T06_53_28_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promiseiltaud = loadLocalizedSound("ElevenLabs_2025-12-10T02_39_25_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promisefltaud = loadLocalizedSound("ElevenLabs_2025-12-10T02_40_37_Alice_pre_sp100_s50_sb75_v3.mp3");
+  promisesltaud = loadLocalizedSound("ElevenLabs_2025-12-10T02_41_38_Alice_pre_sp100_s50_sb75_v3.mp3");
 }
 
 function setup() {
-  breath_no = floor(random(11));
-  console.log(breath_no);
+  breathScenario = nextBreathScenario();
+  console.log(breathScenario);
   maxTotalCompressions = floor(random(30, 130));
   task_time = 600 * maxTotalCompressions+3000;
   mic = new p5.AudioIn();
@@ -517,7 +593,12 @@ function setupQuestion(config) {
 
 }
 window.onload = () => {
+    // Rewrite any <img>/<audio> src to the chosen language's version, if
+    // one exists (falls back to English automatically otherwise).
+    localizeStaticAssets();
+
     // --- Screen Element Definitions ---
+   const langPicker = document.getElementById("langPicker");
    const consent = document.getElementById("consent"); 
   const nameEntry = document.getElementById("nameEntry");
   const nameInput = document.getElementById("nameInput");
@@ -888,6 +969,27 @@ const postq7Next = document.getElementById("postq7Next");
 
     // --- Event Listeners ---
 
+    // Language picker: reselecting the language already active this load
+    // just proceeds straight to consent; picking a different language
+    // saves it and reloads, so preload() picks up the right audio files
+    // from the very start (p5's preload runs before any UI interaction
+    // could otherwise tell it which language was chosen).
+    document.querySelectorAll(".langOption").forEach((btn) => {
+        const choose = (e) => {
+            if (e) e.preventDefault();
+            const lang = btn.getAttribute("data-lang");
+            try { localStorage.setItem("cprLang", lang); } catch (err) { /* ignore */ }
+            if (lang === currentLang) {
+                langPicker.style.display = "none";
+                consent.style.display = "flex";
+            } else {
+                window.location.reload();
+            }
+        };
+        btn.addEventListener('click', choose);
+        btn.addEventListener('touchstart', choose);
+    });
+
    const handleConsent = () => {
         consent.style.display = "none";
         nameEntry.style.display = "flex";
@@ -1214,7 +1316,7 @@ postq7Next.addEventListener("touchstart", handlePostQ7Next);
         checkresponseq.style.display = "none";
         awake.style.display = "none";
         checkbreathing.style.display = "flex";
-        console.log(breath_no);
+        console.log(breathScenario);
         const breathFaceImg = document.getElementById("breathFaceImg");
         const breathTimerEl = document.getElementById("breathTimerNumber");
         let breathTimerCount = 10;
@@ -1225,14 +1327,12 @@ postq7Next.addEventListener("touchstart", handlePostQ7Next);
             if (breathTimerEl) breathTimerEl.textContent = Math.max(breathTimerCount, 0);
             if (breathTimerCount <= 0) clearInterval(breathTimerInterval);
         }, 1000);
-        if (breath_no % 3 === 0) {
+        if (breathScenario === "abnormal") {
             gasp_aud.play();
             if (breathFaceImg) breathFaceImg.src = "gasping.gif";
-            console.log(10);
-        } else if (breath_no % 5 === 0) {
+        } else if (breathScenario === "normal") {
             normal_breath_aud.play();
             if (breathFaceImg) breathFaceImg.src = "faceonly.png";
-            console.log(20);
         } else {
             if (breathFaceImg) breathFaceImg.src = "faceonly.png";
         }
@@ -2351,7 +2451,7 @@ function reset() {
     diffGoal = 0;
     play_elapsed = 0;
     scoreLoggedForAttempt = false;
-    breath_no = floor(random(11));
+    breathScenario = nextBreathScenario();
     dialedNumber = '';
 
     maxTotalCompressions = floor(random(30, 50));
