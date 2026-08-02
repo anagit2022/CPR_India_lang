@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.5/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css?v=9">
+    <link rel="stylesheet" type="text/css" href="style.css?v=11">
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <meta charset="utf-8" />
   </head>
@@ -25,6 +25,20 @@
     <audio id="normalbreathAudio" src="normal_breath_sounds (1).mp3"></audio>
     <audio id="requestaedaud" src="ElevenLabs_2025-11-04T11_58_20_Alice_pre_sp100_s50_sb75_v3.mp3"></audio>
     <audio id="call112" src="ElevenLabs_2026-07-11T14_37_05_Alice - Clear, Engaging Educator_pre_sp100_s50_sb75_v3.mp3"></audio>
+
+    <div class="screen" id="langPicker">
+      <div class="langHeading">Choose your language</div>
+      <div class="langOptions" id="langOptions">
+        <div class="langOption" data-lang="en">English</div>
+        <div class="langOption" data-lang="hi">हिंदी</div>
+        <div class="langOption" data-lang="ta">தமிழ்</div>
+        <div class="langOption" data-lang="bn">বাংলা</div>
+      </div>
+      <!-- To add another language: add a langOption div above with its own
+           data-lang code, then supply matching translated assets named
+           filename_CODE.ext (images) and filename_CODE.mp3 (audio) next
+           to the existing English files. No other code changes needed. -->
+    </div>
 
     <div class="screen" id="consent">
       <img src="consent (1).png" class="bubble"  />
@@ -1082,6 +1096,6 @@
 
     <main>
     </main>
-    <script src="sketch.js?v=9"></script>
+    <script src="sketch.js?v=11"></script>
   </body>
 </html>
